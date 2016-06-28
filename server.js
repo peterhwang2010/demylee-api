@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var config = require('config');
+var Customer = require('./app/models/customer');
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
