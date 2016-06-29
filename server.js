@@ -23,6 +23,7 @@ router.use(function(req, res, next){
 });
 
 router.route('/customers')
+	
 	.post(function(req, res){
 		var customer = new Customer();
 		
@@ -36,6 +37,16 @@ router.route('/customers')
 			if (err)
 				res.send(err);
 			res.json({message: 'Customer created successfully'});
+		});
+	});
+
+router.route('/customers')
+
+	.get(function(req, res){
+		Customer.find(function(err, customers){
+			if (err)
+				res.send(err);
+			res.json(customers);
 		});
 	});
 
