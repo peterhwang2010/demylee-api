@@ -17,6 +17,28 @@ var port = process.env.PORT || 8080;
 
 var router = express.Router();
 
+router.use(function(req, res, next){
+	console.log('Something is happening');
+	next();
+});
+
+router.route('/customers')
+	.post(function(req, res){
+		var customer = new Customer();
+		
+		customer.company_name = req.body.company_name;
+		customer.street_address = req.body.street_address;
+		customer.city = req.body.city;
+		customer.state = req.body.state;
+		customer.zipcode = req.body.zipcode;
+
+		customer.save(function(err) {
+			if (err)
+				res.send(err);
+			res.json({message: 'Customer created successfully'});
+		});
+	});
+
 router.get('/', function(req, res){
 	res.json({message: 'success'});
 });
